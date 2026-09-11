@@ -38,8 +38,49 @@ def mostrar_informacion(dataset):
 def comprobar_duplicados(dataset):
 
     duplicados = dataset.duplicated(
-        subset=["player", "season", "comp"]
+        subset=["player", "born", "season", "comp"]
     ).sum()
 
     print("\nDuplicados jugador + temporada + liga:")
     print(duplicados)
+def mostrar_detalle_duplicados(dataset):
+
+    duplicados = dataset[
+        dataset.duplicated(
+            subset=["player", "born", "season", "comp"],
+            keep=False
+        )
+    ]
+
+    duplicados = duplicados.sort_values(
+        ["season", "comp", "player"]
+    )
+
+    print("\n===================================")
+    print("DETALLE DE DUPLICADOS")
+    print("===================================")
+
+    print(
+        duplicados[
+            [
+                "player",
+                "squad",
+                "pos",
+                "season",
+                "comp",
+                "Goals",
+                "Assists",
+                "Rating"
+            ]
+        ].to_string(index=False)
+    )
+
+    return duplicados
+def eliminar_duplicados(dataset):
+
+    dataset_limpio = dataset.drop_duplicates(
+        subset=["player", "born", "season", "comp"],
+        keep="first"
+    )
+
+    return dataset_limpio
