@@ -44,3 +44,9 @@ def crear_dataset_temporada(fbref, archivos_sofascore):
         datasets,
         ignore_index=True
     )
+    
+def unir_temporadas(datasets):
+    return pd.concat(
+        datasets,
+        ignore_index=True
+    )

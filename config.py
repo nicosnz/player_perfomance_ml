@@ -9,6 +9,17 @@ LIGAS = [
 
 
 TEMPORADAS = {
+    "2021-22": {
+        "fbref": "datasets/FBref/cleaned_2021-22.csv",
+
+        "sofascore": {
+            "Bundesliga": "datasets/sofascore/2021-2022/Bundesliga20212022.csv",
+            "La Liga": "datasets/sofascore/2021-2022/laliga20212022.csv",
+            "Serie A": "datasets/sofascore/2021-2022/SerieA20212022.csv",
+            "Ligue 1": "datasets/sofascore/2021-2022/ligue120212022.csv",
+            "Premier League": "datasets/sofascore/2021-2022/PL20212022.csv"
+        }
+    },
     "2022-23": {
         "fbref": "datasets/FBref/cleaned_2022-23.csv",
 

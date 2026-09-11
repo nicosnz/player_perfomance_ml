@@ -1,8 +1,6 @@
-# main.py
-
 from config import TEMPORADAS
 from loader import cargar_csv
-from merger import crear_dataset_temporada
+from merger import crear_dataset_temporada,unir_temporadas
 from validator import (
     mostrar_informacion,
     comprobar_duplicados
@@ -59,10 +57,48 @@ def procesar_temporada(nombre_temporada):
 # Programa principal
 # =========================
 
+dataset_2021_22 = procesar_temporada(
+    "2021-22"
+)
 dataset_2022_23 = procesar_temporada(
     "2022-23"
 )
 
 dataset_2023_24 = procesar_temporada(
     "2023-24"
+)
+
+
+# ===================================
+# UNIR LAS TRES TEMPORADAS
+# ===================================
+
+dataset_historico = unir_temporadas([
+    dataset_2021_22,
+    dataset_2022_23,
+    dataset_2023_24
+])
+
+
+print("\n===================================")
+print("DATASET HISTÓRICO")
+print("===================================")
+
+print("\nShape:")
+print(dataset_historico.shape)
+
+print("\nRegistros por temporada:")
+print(
+    dataset_historico["season"].value_counts()
+)
+
+print("\nRegistros por liga:")
+print(
+    dataset_historico["comp"].value_counts()
+)
+
+
+guardar_dataset(
+    dataset_historico,
+    "datasets/dataset_historico.csv"
 )
